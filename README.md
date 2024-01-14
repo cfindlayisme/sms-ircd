@@ -1,0 +1,1 @@
+irc server that acts an a gateway to SMS. WIP, not ready for usage at all. Plan to use this to send SMS messages from my IRC client/recieve them.
