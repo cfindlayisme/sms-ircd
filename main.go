@@ -1,23 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net"
 	"strings"
 	"time"
 
+	"github.com/cfindlayisme/sms-ircd/env"
 	"github.com/cfindlayisme/sms-ircd/ircserver"
 	"github.com/cfindlayisme/sms-ircd/model"
 )
 
 func main() {
-	listener, err := net.Listen("tcp", ":6555")
+	listener, err := net.Listen("tcp", ":"+env.GetServerPort())
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("IRC server started on port 6555")
+	log.Println("IRC server started on port", env.GetServerPort())
 
 	for {
 		conn, err := listener.Accept()
