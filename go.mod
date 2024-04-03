@@ -1,6 +1,6 @@
 module github.com/cfindlayisme/sms-ircd
 
-go 1.22.1
+go 1.22.2
 
 require github.com/twilio/twilio-go v1.19.0
 
