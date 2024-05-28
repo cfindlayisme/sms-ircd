@@ -2,7 +2,7 @@ version: '3'
 
 services:
   wmb:
-    image: gitea.findlayis.me/chuck/sms-ircd:latest
+    image: ghcr.io/cfindlayisme/sms-ircd:latest
     environment: 
         - SERVER_NAME=sms-ircd
         - SERVER_PORT=6555
