@@ -5,13 +5,19 @@ WORKDIR /app
 COPY . ./
 RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /application
+RUN apt-get update && apt-get install -y ca-certificates
 
-FROM scratch
+# Enable CGO for sqllite dependency
+RUN CGO_ENABLED=1 GOOS=linux go build -o /application
 
+FROM debian:12.5-slim
+
+RUN apt-get update && apt-get install -y libc6 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /application /application
-
-EXPOSE 8080
 
 # Run
 CMD ["/application"]
