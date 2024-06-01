@@ -82,14 +82,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build Docker images
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_REPO }}:latest
       - name: Build and load amd64 Docker image for vuln scanning
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
