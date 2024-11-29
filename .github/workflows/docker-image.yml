@@ -32,8 +32,9 @@ jobs:
       uses: hashicorp/vault-action@v3.0.0
       with:
         url: ${{ secrets.VAULT_ADDR }}
-        method: token
-        token: ${{ secrets.VAULT_TOKEN }}
+        method: approle
+        roleId: ${{ secrets.VAULT_ROLE_ID }}
+        secretId: ${{ secrets.VAULT_SECRET_ID }}
         secrets: |
             kv/data/pipeline/wmb WMB_URL ;
             kv/data/pipeline/wmb WMB_PASSWORD
@@ -84,8 +85,9 @@ jobs:
       uses: hashicorp/vault-action@v3.0.0
       with:
         url: ${{ secrets.VAULT_ADDR }}
-        method: token
-        token: ${{ secrets.VAULT_TOKEN }}
+        method: approle
+        roleId: ${{ secrets.VAULT_ROLE_ID }}
+        secretId: ${{ secrets.VAULT_SECRET_ID }}
         secrets: |
             kv/data/pipeline/wmb WMB_URL ;
             kv/data/pipeline/wmb WMB_PASSWORD
@@ -130,8 +132,9 @@ jobs:
       uses: hashicorp/vault-action@v3.0.0
       with:
         url: ${{ secrets.VAULT_ADDR }}
-        method: token
-        token: ${{ secrets.VAULT_TOKEN }}
+        method: approle
+        roleId: ${{ secrets.VAULT_ROLE_ID }}
+        secretId: ${{ secrets.VAULT_SECRET_ID }}
         secrets: |
             kv/data/pipeline/wmb WMB_URL ;
             kv/data/pipeline/wmb WMB_PASSWORD
@@ -148,4 +151,3 @@ jobs:
         export MESSAGE="Build and push of ghcr.io/${{ github.repository }}:latest failed with commit message: $COMMIT_MSG. See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         curl -X POST -H "Content-Type: application/json" -d "{\"message\": \"$MESSAGE\", \"password\": \"${{ steps.import-secrets-wmb.outputs.WMB_PASSWORD }}\", \"colourcode\": 4}" ${{ steps.import-secrets-wmb.outputs.WMB_URL }}
       if: failure()
-      
