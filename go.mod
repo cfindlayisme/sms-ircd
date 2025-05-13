@@ -2,7 +2,7 @@ module github.com/cfindlayisme/sms-ircd
 
 go 1.22.3
 
-require github.com/twilio/twilio-go v1.26.0
+require github.com/twilio/twilio-go v1.26.1
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
