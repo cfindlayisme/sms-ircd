@@ -137,7 +137,7 @@ jobs:
         exportEnv: true
 
     - name: Build and push :staging tag
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./Dockerfile
@@ -147,7 +147,7 @@ jobs:
 
     - name: Build and push :latest tag
       if: github.ref == 'refs/heads/main'
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@v7
       with:
         context: .
         file: ./Dockerfile
